@@ -1,0 +1,30 @@
+<%-include("./partials/header.ejs") %>
+<h1>Prognoza meteo pentru <%= location %></h1>
+    <div class="meteoNow">
+      <div>
+        <h2>Vremea acum ,in <span><%=location %></span></h2>
+        <h2><%= today %></h2>
+      </div>
+
+      <div>
+        <h2><%=result.main.temp.toFixed(1) %>° C</h2>
+        <h3>Feels like:<%=result.main.feels_like.toFixed(1)%></h3>
+      </div>
+      <div>
+        <h2><%= result.weather[0].description %></h2>
+      </div>
+      <div>
+        <img src=<%=logo%> alt="meteo logo">
+      </div>
+      <div>
+        <h2>Vant:</h2>
+        <h3><%=result.wind.speed.toFixed(0)%> mps</h3>
+        <h3>Directie: <%=windDirection  %></h3>
+      </div>
+      <div>
+        <h2>Rasarit  <%= sunState.sunrise %></h2>
+        <h2>Apus  <%= sunState.sunset %></h2>
+      </div>
+    </div>
+</section>
+
