@@ -1,39 +1,40 @@
 <%-include("./partials/header.ejs") %>
-<h1>Prognoza meteo pentru <%= location %></h1>
+<h1 class="title">Prognoza meteo pentru <%= location %></h1>
+  <div id="flexForCenter">
     <div class="meteoNow">
-      <div>
-        <h2>Vremea acum ,in <span><%=location %></span></h2>
-        <h2><%= today %></h2>
+      <div class="el el1">
+        <h2 id="nowInCity">Vremea acum ,in <span id="cityName"><%=location %></span></h2>
+        <h2>- <%= today %> -</h2>
       </div>
-      <div>
-        <h3><%=result.main.temp.toFixed(1) %>° C</h3>
-        <h4>Feels like:<%=result.main.feels_like.toFixed(1)%>° C</h4>
+      <div class="el el2">
+        <h3 class="description now"><%= result.weather[0].description %></h3>
+        <h3 class="degrees now"><%=result.main.temp.toFixed(1) %><span class="unit">°C</span></h3>
+        <h4>Se simte ca: <%=result.main.feels_like.toFixed(1)%> ° C</h4>
+        <div  id="wind now">
+          <h3>Vânt:</h3>
+          <h4><%=result.wind.speed.toFixed(0)%> mps</h4>
+          <h4>Directie: <%=windDirection  %></h4>
+        </div>
       </div>
-      <div>
-        <h3><%= result.weather[0].description %></h3>
-      </div>
-      <div>
+      <div class="el el3">
         <img src=<%=logo%> alt="weather logo" class="wlogo now">
       </div>
-      <div>
-        <h3>Vant:</h3>
-        <h4><%=result.wind.speed.toFixed(0)%> mps</h4>
-        <h4>Directie: <%=windDirection  %></h4>
-      </div>
-      <div>
+      <div  class="el el4">
         <h3>Rasarit  <%= sunState.sunrise %></h3>
         <h3>Apus  <%= sunState.sunset %></h3>
       </div>
     </div>
     <div class="meteo5d">
-      <h2>Prognoza meteo pentru 5 zile</h2>
+      <div id="title5days">
+        <h2>Prognoza meteo pentru 5 zile</h2>
+      </div>
       <% DataResult2.forEach(function(element) {%>
+        <h3 class="day"><%= element[0].day %></h3>
         <div class="dayCard">
-          <h3><%= element[0].day %></h3>
           <% for(let j=1;j<element.length;j++) {%>
-           <div>
-             <h4><%= element[j].hour  %>:00</h4>
-             <h4><%= element[j].temp  %>° C</h4>
+           <div class="hourCard">
+             <h4 class="hour"><%= element[j].hour  %>:00</h4>
+             <h4><span class="degrees"><%= element[j].temp  %></span>° C</h4>
              <img src="<%=element[j].logo %>" alt="weather logo" class="wlogo prognose">
              <h4><%= element[j].description  %></h4>
              <h4>Vant: <%= element[j].wind  %> mps</h4>
@@ -42,5 +43,6 @@
         </div>
       <% }); %>
     </div>
-</section>
+  </div>
 
+<%-include("./partials/footer.ejs") %>

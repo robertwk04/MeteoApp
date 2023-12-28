@@ -1,0 +1,7 @@
+#0C356A blue
+#0174BE light blue
+#FFF0CE light yellow
+#FFC436 yellow
+fonts:
+'Roboto Slab', serif;
+'Quicksand','sans-serif';

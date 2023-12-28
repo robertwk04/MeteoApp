@@ -1,12 +1,15 @@
 <%-include("./partials/header.ejs") %>
-<h1>Vezi vremea curenta si prognoza meteo pentru orice oras din intreaga lume</h1>
+<div id="locationForm">
+<h1 class="title">Vezi vremea curenta si prognoza meteo</h1>
+<h2 class="subtitle">pentru orice oras din intreaga lume</h2>
 <form action="/locatie" method="post">
-
-    <label for="nume">Oras:</label>
-    <input type="text" id="city" name="city" required>
-    <input type="submit" value="Vezi Vremea">
-  </form>
-
+    <input type="text" id="city" name="city" class="input" placeholder="Oraș" required>
+    <input type="submit" value="Caută" class="button">
+</form>
   <% if(locals.error){ %>
-  <h2><%= error %></h2>
+  <div class="error">
+   <h2><%= error %></h2>
+  </div>
   <% } %>
+</div>
+<%-include("./partials/footer.ejs") %>
